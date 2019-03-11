@@ -1,13 +1,39 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { createStackNavigator,createAppContainer } from 'react-navigation';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 const SignIn = (props) => {
-    console.log(props);
-    return <Text>Componente SignIn</Text>;
+    // console.log(props);
+    // props.navigation.navigate()
+    const { navigation } = props;
+    return (
+        <View>
+            <Text>Componente SignIn</Text>
+            <Button
+                title="Navegar a SignUp"
+                onPress={() => {
+                    navigation.navigate('SignUp');
+                }}
+            />
+        </View>
+    );
 }
 
-const SignUp = () => <Text>Componente SignUp</Text>;
+const SignUp = (props) => {
+    const { navigation } = props;
+    return (
+        <View>
+            <Text>Componente SignUp</Text>
+            <Button
+                title="Navegar a SignIn"
+                onPress={() => {
+                    // navigation.navigate('SignIn');
+                    navigation.goBack();
+                }}
+            />
+        </View>
+    );
+}
 
 const RutasNoAutenticadas = createStackNavigator({
   SignIn: {
