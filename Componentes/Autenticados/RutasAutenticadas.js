@@ -8,6 +8,9 @@ import Profile from './Profile';
 const RutasAutenticadas = createBottomTabNavigator({
     Home: {
         screen: StackHome,
+        navigationOptions: {
+            // tabBarVisible: false,
+        }
     },
     Search: {
         screen: Search,

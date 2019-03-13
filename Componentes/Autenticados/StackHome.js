@@ -16,7 +16,27 @@ const StackHome = createStackNavigator({
     },
     Comentarios: {
         screen: Comentarios,
+        // navigationOptions: ({ navigation }) => ({
+        //     // title: 'asdads',
+        //     tabBarVisible: false,
+        // }),
     },
 });
 
-export default createAppContainer(StackHome);
+StackHome.navigationOptions = ({ navigation }) => {
+    // console.log("navigation!!");
+    // console.log(navigation);
+    // console.log(JSON.stringify(navigation));
+    let tabBarVisible = true;
+    // if (navigation.state.index == 1) {
+    if (navigation.state.routes[navigation.state.routes.length - 1].routeName == "Comentarios") {
+        tabBarVisible = false;
+    }
+
+    return {
+        tabBarVisible,
+    };
+};
+
+export default StackHome;
+// export default createAppContainer(StackHome);
