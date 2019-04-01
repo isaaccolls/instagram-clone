@@ -7,6 +7,9 @@ import Comentarios from './Comentarios';
 const StackFollow = createStackNavigator({
     TabFollow: {
         screen: TabFollow,
+        navigationOptions: {
+            header: null,
+        },
     },
     Autor: {
         screen: Autor,
@@ -18,5 +21,17 @@ const StackFollow = createStackNavigator({
         screen: Comentarios,
     }
 });
+
+StackFollow.navigationOptions = ({ navigation }) => {
+    // console.log("navigation!!");
+    // console.log(navigation);
+    // console.log(JSON.stringify(navigation));
+    let { routeName } = navigation.state.routes[navigation.state.index];
+    let navigationOptions = {};
+      if (routeName === 'Comentarios') {
+        navigationOptions.tabBarVisible = false;
+    }
+    return navigationOptions;
+};
 
 export default StackFollow;
