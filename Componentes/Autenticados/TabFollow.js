@@ -1,7 +1,7 @@
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
 import Follow from './Follow';
 
-const TabFollow = createBottomTabNavigator(
+const TabFollow = createMaterialTopTabNavigator(
     {
         Follow: {
             screen: Follow,
@@ -9,7 +9,11 @@ const TabFollow = createBottomTabNavigator(
         Followers: {
             screen: Follow,
         }
+    },
+    {
+        tabBarPosition: 'top',
     }
 );
 
 export default createAppContainer(TabFollow);
+// export default TabFollow;
