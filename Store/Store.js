@@ -1,6 +1,13 @@
 import { createStore, combineReducers } from 'redux';
 
-const reducerPrueba = (state=[], action) => state;
+const reducerPrueba = (state=[0], action) => {
+    switch (action.type) {
+        case 'AUMENTAR_REDUCER_PRUEBA':
+            return [...state, 1];
+        default:
+            return state;
+    }
+};
 
 const reducers = combineReducers({
     reducerPrueba,
