@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
+import SignInForm from './Formas/SignInForm';
 
 class SignIn extends Component {
     render() {
@@ -7,6 +8,7 @@ class SignIn extends Component {
         return (
             <View style={styles.container}>
                 <Text>SignIn</Text>
+                <SignInForm />
                 <Button
                     title="SignUp"
                     onPress={() =>
@@ -23,7 +25,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#902e9b',
+        backgroundColor: '#fff',
     },
 });
 
