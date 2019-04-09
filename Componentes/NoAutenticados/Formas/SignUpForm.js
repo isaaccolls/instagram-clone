@@ -13,6 +13,7 @@ const fieldNombre = (props) => {
                 keyboardType={props.input.name === 'correo' ? 'email-address' : 'default'}
                 autoCapitalize='none'
                 secureTextEntry={!!(props.input.name === 'password' || props.input.name === 'confirmacion')}
+                onBlur={props.input.onBlur}
             />
             { props.meta.touched && props.meta.error && <Text>{props.meta.error}</Text>}
         </View>
@@ -37,9 +38,9 @@ const validate = (values) => {
 
     if (!values.password) {
         errors.password = 'requerido';
-    } else if (values.password < 5) {
+    } else if (values.password.length < 5) {
         errors.password = 'deben ser al menos 5 caracteres';
-    } else if (values.password > 15) {
+    } else if (values.password.length > 15) {
         errors.password = 'deben ser menos de 15 caracteres';
     }
 
