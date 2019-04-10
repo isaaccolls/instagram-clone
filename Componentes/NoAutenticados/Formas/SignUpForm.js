@@ -5,7 +5,7 @@ import { Field, reduxForm } from 'redux-form';
 const fieldNombre = (props) => {
     console.log(props); //props.input.onChange <= es la q inyecta fields, no del TextInput
     return (
-        <View>
+        <View style={styles.textInput}>
             <TextInput
                 placeholder={props.ph}
                 onChangeText={props.input.onChange}
@@ -15,7 +15,8 @@ const fieldNombre = (props) => {
                 secureTextEntry={!!(props.input.name === 'password' || props.input.name === 'confirmacion')}
                 onBlur={props.input.onBlur}
             />
-            { props.meta.touched && props.meta.error && <Text>{props.meta.error}</Text>}
+            <View style={styles.linea} />
+            { props.meta.touched && props.meta.error && <Text style={styles.errors}>{props.meta.error}</Text>}
         </View>
     );
 };
@@ -77,7 +78,6 @@ const SignUpForm = (props) => {
                 component={fieldNombre}
                 ph="*******"
             />
-            <Text>Redux Form</Text>
             <Button
                 title="Registrar"
                 onPress={props.handleSubmit((values) => {console.log(values)})}
@@ -85,6 +85,19 @@ const SignUpForm = (props) => {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    textInput: {
+        marginBottom: 16,
+    },
+    linea: {
+        backgroundColor: '#DCDCDC',
+        height: 2,
+    },
+    errors: {
+        color: '#FF0000',
+    }
+});
 
 export default reduxForm({
     form: 'SignUpForm',
