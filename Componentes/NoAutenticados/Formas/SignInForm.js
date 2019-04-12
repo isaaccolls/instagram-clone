@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 import { Field, reduxForm } from 'redux-form';
 
 const fieldNombre = (props) => {
-    console.log(props); //props.input.onChange <= es la q inyecta fields, no del TextInput
+    // console.log(props); //props.input.onChange <= es la q inyecta fields, no del TextInput
     return (
         <View style={styles.textInput}>
             <TextInput
