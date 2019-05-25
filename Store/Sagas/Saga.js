@@ -1,25 +1,37 @@
 // takeEvery: escucha cada dispatch del store y ejecuta una funcion si encuentra el dispatch
 // call: ejecuta una funcion
 import { takeEvery, call } from 'redux-saga/effects';
-import { autenticacion } from '../Servicios/Firebase';
+import { autenticacion, baseDeDatos } from '../Servicios/Firebase';
 
-const registroEnFirebase = (values) => autenticacion
-    .createUserWithEmailAndPassword(values.correo, values.password)
-    .then((success) => {
-        console.log(success)
-    })
-    .catch((error) => {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode)
-        console.log(errorMessage)
-        // ...
+const registroEnFirebase = values =>
+    autenticacion
+        .createUserWithEmailAndPassword(values.correo, values.password)
+        .then(success => success.user.toJSON());
+        // .then(success => JSON.stringify(success));
+
+const registroEnBaseDeDatos = ({ uid, email, nombre }) => {
+    // console.log("registroEnBaseDeDatos 👽");
+    // console.log(uid, email, nombre);
+    return baseDeDatos.ref(`usuarios/${uid}`).set({
+        nombre,
+        email,
     });
+}
 
 function* generadoraRegistro(values) {
-    yield call(registroEnFirebase, values.datos);
-    console.log(values);
+    // console.log(values);
+    try {
+        const registro = yield call(registroEnFirebase, values.datos);
+        // console.log("respuesta 👽");
+        // console.log(registro);
+        // console.log(values);
+        const { email, uid } = registro;
+        const { datos: { nombre } } = values;
+        // uid, email, nombre
+        yield call(registroEnBaseDeDatos, { uid, email, nombre });
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 export default function* funcionPrimaria() {

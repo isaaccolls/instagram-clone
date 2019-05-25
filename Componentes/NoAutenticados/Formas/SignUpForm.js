@@ -58,7 +58,7 @@ const validate = (values) => {
 
 const SignUpForm = (props) => {
     // console.log(props);
-    console.log("SignUpForm");
+    // console.log("SignUpForm");
     return(
         <View>
             <Field

@@ -5,11 +5,11 @@ import SignUpForm from './Formas/SignUpForm';
 
 class SignUp extends Component {
     registroDeUsuario = (values) => {
-        console.log(values);
+        // console.log(values);
         this.props.registro(values);
     }
     render() {
-        console.log(this.props.numero);
+        // console.log(this.props.numero);
         const { navigation } = this.props;
         return (
             <View style={styles.container}>
