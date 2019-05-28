@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import SignInForm from './Formas/SignInForm';
+import { connect } from 'react-redux';
 
 class SignIn extends Component {
+    signinDeUsuario = (values) => {
+        // console.log(values);
+        this.props.login(values);
+    }
+
     render() {
         const { navigation } = this.props;
         return (
             <View style={styles.container}>
-                <SignInForm />
+                <SignInForm login={this.signinDeUsuario} />
                 <Button
                     title="SignUp"
                     onPress={() =>
@@ -29,4 +35,19 @@ const styles = StyleSheet.create({
     },
 });
 
-export default SignIn;
+const mapStateToProps = (state) => {
+    return {
+        prop: state.prop
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        login: (datos) => {
+            dispatch({type: 'LOGIN', datos});// remember destructuring in "datos" 😜
+        }
+    }
+}
+
+// export default SignIn;
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

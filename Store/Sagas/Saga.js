@@ -18,7 +18,7 @@ const registroEnBaseDeDatos = ({ uid, email, nombre }) => {
     });
 }
 
-function* generadoraRegistro(values) {
+function* sagaRegistro(values) {
     // console.log(values);
     try {
         const registro = yield call(registroEnFirebase, values.datos);
@@ -34,9 +34,25 @@ function* generadoraRegistro(values) {
     }
 }
 
+const loginEnFirebase = ({correo, password}) =>
+    autenticacion.signInWithEmailAndPassword(correo, password)
+        .then((success) => success.user.toJSON());
+
+function* sagaLogin(values) {
+    try {
+        console.log("sagaLogin");
+        console.log(values);
+        const resultado = yield call(loginEnFirebase, values.datos);
+        console.log(resultado);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export default function* funcionPrimaria() {
     // takeEvery es un Listener
-    yield takeEvery('REGISTRO', generadoraRegistro)
+    yield takeEvery('REGISTRO', sagaRegistro);
     // yield ES6 permite pausar ejecucion de la funcion en yield y regresar un valor.
+    yield takeEvery('LOGIN', sagaLogin);
     console.log('Desde nuestra funcion generadora');
 }
