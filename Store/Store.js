@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import {reducer as form } from 'redux-form';
 import createSagaMiddleware from 'redux-saga';
-import funcionPrimaria from './Sagas/Saga';
+import funcionPrimaria from './Sagas/Sagas';
 
 const reducerPrueba = (state=[0], action) => {
     switch (action.type) {
