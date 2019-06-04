@@ -2,6 +2,7 @@
 // call: ejecuta una funcion
 import { takeEvery, call } from 'redux-saga/effects';
 import { autenticacion, baseDeDatos } from '../Servicios/Firebase';
+import CONSTANTES from '../CONSTANTES';
 
 const registroEnFirebase = values =>
     autenticacion
@@ -51,8 +52,8 @@ function* sagaLogin(values) {
 
 export default function* funcionPrimaria() {
     // takeEvery es un Listener
-    yield takeEvery('REGISTRO', sagaRegistro);
+    yield takeEvery(CONSTANTES.REGISTRO, sagaRegistro);
     // yield ES6 permite pausar ejecucion de la funcion en yield y regresar un valor.
-    yield takeEvery('LOGIN', sagaLogin);
+    yield takeEvery(CONSTANTES.LOGIN, sagaLogin);
     console.log('Desde nuestra funcion generadora');
 }

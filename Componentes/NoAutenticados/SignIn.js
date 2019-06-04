@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import SignInForm from './Formas/SignInForm';
 import { connect } from 'react-redux';
+import { actionLogin } from '../../Store/ACCIONES';
 
 class SignIn extends Component {
     signinDeUsuario = (values) => {
@@ -44,7 +45,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         login: (datos) => {
-            dispatch({type: 'LOGIN', datos});// remember destructuring in "datos" 😜
+            // dispatch({type: 'LOGIN', datos});// remember destructuring in "datos" 😜
+            // implementing a action creator
+            dispatch(actionLogin(datos));// remember destructuring in "datos" 😜
         }
     }
 }

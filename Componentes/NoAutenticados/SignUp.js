@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { connect } from 'react-redux';
 import SignUpForm from './Formas/SignUpForm';
+import { actionRegistro } from '../../Store/ACCIONES';
 
 class SignUp extends Component {
     registroDeUsuario = (values) => {
@@ -44,7 +45,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         registro: (values) => {
-            dispatch({ type: 'REGISTRO', datos: values });
+            // dispatch({ type: 'REGISTRO', datos: values });
+            // implementing a action creator
+            dispatch(actionRegistro(values));
         },
     }
 }
