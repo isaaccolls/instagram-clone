@@ -17,7 +17,9 @@ class Profile extends Component {
                 />
                 <Button
                     title='Salir'
-                    onPress={() => {autenticacion.signOut()}}
+                    onPress={() => {
+                        autenticacion.signOut();
+                    }}
                 />
             </View>
         );

@@ -17,7 +17,7 @@ const reducerSesion = (state = null, action) => {
     switch (action.type) {
         case CONSTANTES.ESTABLECER_SESION:
             return action.usuario;
-        case CONSTANTES.CERRAR_SESSION:
+        case CONSTANTES.CERRAR_SESION:
             return null;
         default:
             return state;
