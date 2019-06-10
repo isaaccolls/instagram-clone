@@ -60,7 +60,7 @@ const SignUpForm = (props) => {
     // console.log(props);
     // console.log("SignUpForm");
     return(
-        <View>
+        <View style={styles.container}>
             <Field
                 name="nombre"
                 component={fieldNombre}
@@ -107,6 +107,9 @@ const SignUpForm = (props) => {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 3,
+    },
     textInput: {
         marginBottom: 16,
     },
