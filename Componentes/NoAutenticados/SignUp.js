@@ -4,8 +4,14 @@ import { connect } from 'react-redux';
 import SignUpForm from './Formas/SignUpForm';
 import { actionRegistro } from '../../Store/ACCIONES';
 import SeleccionarImagen from '../SeleccionarImagen';
+import CONSTANTES from '../../Store/CONSTANTES';
 
 class SignUp extends Component {
+
+    componentWillUnmount() {
+        this.props.limpiarImagen();
+    }
+
     registroDeUsuario = (values) => {
         // console.log(values);
         this.props.registro(values);
@@ -13,9 +19,10 @@ class SignUp extends Component {
     render() {
         // console.log(this.props.numero);
         const { navigation } = this.props;
+        // console.log(this.props);
         return (
             <View style={styles.container}>
-                <SeleccionarImagen />
+                <SeleccionarImagen imagen={this.props.imagen.imagen} cargar={this.props.cargarImagen} />
                 <SignUpForm registro={this.registroDeUsuario} />
                 <Button
                     title="SignIn"
@@ -41,6 +48,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state, ownProps) => {
     return {
         numero: state.reducerPrueba,
+        imagen: state.reducerImagenSignUp,
     }
 }
 
@@ -50,6 +58,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             // dispatch({ type: 'REGISTRO', datos: values });
             // implementing a action creator
             dispatch(actionRegistro(values));
+        },
+        cargarImagen: (imagen) => {
+            dispatch({ type: CONSTANTES.CARGAR_IMAGEN_SIGNUP, imagen })
+        },
+        limpiarImagen: () => {
+            dispatch({ type: CONSTANTES.LIMPIAR_IMAGEN_SIGNUP })
         },
     }
 }
