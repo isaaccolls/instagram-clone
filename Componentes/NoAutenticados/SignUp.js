@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { connect } from 'react-redux';
 import SignUpForm from './Formas/SignUpForm';
-import { actionRegistro } from '../../Store/ACCIONES';
+import { actionRegistro, actionCargarImagenSignUp, actionLimpiarImagenSignUp } from '../../Store/ACCIONES';
 import SeleccionarImagen from '../SeleccionarImagen';
 import CONSTANTES from '../../Store/CONSTANTES';
 
@@ -60,10 +60,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(actionRegistro(values));
         },
         cargarImagen: (imagen) => {
-            dispatch({ type: CONSTANTES.CARGAR_IMAGEN_SIGNUP, imagen })
+            // dispatch({ type: CONSTANTES.CARGAR_IMAGEN_SIGNUP, imagen });
+            dispatch(actionCargarImagenSignUp(imagen));
         },
         limpiarImagen: () => {
-            dispatch({ type: CONSTANTES.LIMPIAR_IMAGEN_SIGNUP })
+            // dispatch({ type: CONSTANTES.LIMPIAR_IMAGEN_SIGNUP });
+            dispatch(actionLimpiarImagenSignUp());
         },
     }
 }
