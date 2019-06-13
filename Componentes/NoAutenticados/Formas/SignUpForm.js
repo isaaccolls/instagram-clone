@@ -23,8 +23,22 @@ const fieldNombre = (props) => {
     );
 };
 
-const validate = (values) => {
+const fieldImagen = props => (
+    <View>
+        <View>
+            { props.meta.touched && props.meta.error && <Text style={styles.errors}>{props.meta.error}</Text>}
+        </View>
+    </View>
+);
+
+const validate = (values, props) => {
+    console.log("Ejecutando validacion");
     const errors = {};
+
+    if (!props.imagen) {
+        errors.imagen = 'imagen es requerida';
+    }
+
     if (!values.nombre) {
         errors.nombre = 'requerido';
     } else if (values.nombre.length < 5) {
@@ -61,6 +75,10 @@ const SignUpForm = (props) => {
     // console.log("SignUpForm");
     return(
         <View style={styles.container}>
+            <Field
+                name='imagen'
+                component={fieldImagen}
+            />
             <Field
                 name="nombre"
                 component={fieldNombre}
