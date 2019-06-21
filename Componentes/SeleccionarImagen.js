@@ -4,7 +4,19 @@ import {ImagePicker, Permissions, Constants} from 'expo';
 
 
 const SeleccionarImagen = (props) => {
+
+  getPermissionAsync = async () => {
+    if (Constants.platform.ios) {
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      if (status !== 'granted') {
+        alert('Sorry, we need camera roll permissions to make this work!');
+      }
+    }
+  }
+
   const seleccionarImagen = async () => {
+    getPermissionAsync(); // should be on componentDidMount()
+
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
@@ -28,7 +40,7 @@ const SeleccionarImagen = (props) => {
               style={{ width: 160, height: 160, borderRadius: 80 }}
             />
           ) : (
-            <Image source={require('../assets/xd_304.jpg')}
+            <Image source={require('../assets/signUp.png')}
               style={{ width: 160, height: 160, borderRadius: 80 }}
             />
           )
@@ -39,17 +51,3 @@ const SeleccionarImagen = (props) => {
 };
 
 export default SeleccionarImagen;
-
-  // componentDidMount() {
-  //   this.getPermissionAsync();
-  // }
-
-  // getPermissionAsync = async () => {
-  //   if (Constants.platform.ios) {
-  //     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-  //     if (status !== 'granted') {
-  //       alert('Sorry, we need camera roll permissions to make this work!');
-  //     }
-  //   }
-  // }
-

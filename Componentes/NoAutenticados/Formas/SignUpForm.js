@@ -101,24 +101,7 @@ const SignUpForm = (props) => {
             />
             <Button
                 title="Registrar"
-                onPress={props.handleSubmit(props.registro,
-                //     (values) => {
-                //     console.log(values)
-                //     autenticacion
-                //     .createUserWithEmailAndPassword(values.correo, values.password)
-                //     .then((success) => {
-                //         console.log(success)
-                //     })
-                //     .catch((error) => {
-                //         // Handle Errors here.
-                //         var errorCode = error.code;
-                //         var errorMessage = error.message;
-                //         console.log(errorCode)
-                //         console.log(errorMessage)
-                //         // ...
-                //     });
-                // }
-                )}
+                onPress={props.handleSubmit(props.registro)}
             />
         </View>
     );
