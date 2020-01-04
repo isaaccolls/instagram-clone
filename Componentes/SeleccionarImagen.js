@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { Button, Image, View, TouchableOpacity } from 'react-native';
-import { ImagePicker, Permissions, Constants } from 'expo';
+// import { ImagePicker, Permissions, Constants } from 'expo';
+import Constants from 'expo-constants';
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
 
 
 const SeleccionarImagen = (props) => {
