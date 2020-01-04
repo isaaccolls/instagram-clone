@@ -1,11 +1,25 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 
 class Add extends Component {
     render() {
+        console.log(this.props);
+        const { navigation } = this.props;
         return (
             <View style={styles.container}>
+                <Button
+                    title='Seleccionar galeria'
+                    onPress={ () => {
+                        navigation.navigate('Seleccion')
+                    }}
+                ></Button>
                 <Text>Add</Text>
+                <Button
+                    title='Tomar foto'
+                    onPress={ () => {
+                        navigation.navigate('Seleccion')
+                    }}
+                ></Button>
             </View>
         );
     }

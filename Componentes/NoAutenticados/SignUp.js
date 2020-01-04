@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, StyleSheet, Button } from 'react-native';
 import { connect } from 'react-redux';
-import { blur, change } from 'redux-form';
+import { blur } from 'redux-form';
 import SignUpForm from './Formas/SignUpForm';
 import { actionRegistro, actionCargarImagenSignUp, actionLimpiarImagenSignUp } from '../../Store/ACCIONES';
 import SeleccionarImagen from '../SeleccionarImagen';
-import CONSTANTES from '../../Store/CONSTANTES';
 
 class SignUp extends Component {
 
