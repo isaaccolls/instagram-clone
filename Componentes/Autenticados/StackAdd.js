@@ -3,7 +3,7 @@ import Add from './Add';
 import SeleccionarGaleria from './SeleccionarGaleria';
 
 const StackAdd =  createStackNavigator({
-    Home: {
+    Add: {
         screen: Add,
     },
     Seleccion: {
