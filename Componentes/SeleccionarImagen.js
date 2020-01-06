@@ -33,7 +33,7 @@ const SeleccionarImagen = (props) => {
       props.cargar(result);
     }
   };
-  console.log("😊 radius: ", props.radius);
+  // console.log("😊 radius: ", props.radius);
   const radius = { borderRadius: props.radius ? 0 : 80 }
 
   return (
