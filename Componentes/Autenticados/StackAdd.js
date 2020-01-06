@@ -11,4 +11,17 @@ const StackAdd =  createStackNavigator({
     }
 });
 
+StackAdd.navigationOptions = ({ navigation }) => {
+    // console.log("navigation!!");
+    // console.log(navigation);
+    // console.log(JSON.stringify(navigation));
+    let { routeName } = navigation.state.routes[navigation.state.index];
+    let navigationOptions = {};
+      if (routeName === 'Seleccion') {
+        navigationOptions.tabBarVisible = false;
+    }
+    return navigationOptions;
+};
+
+
 export { StackAdd };

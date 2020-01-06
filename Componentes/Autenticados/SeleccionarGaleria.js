@@ -5,11 +5,14 @@ import SeleccionarImagen from '../SeleccionarImagen';
 import { actionCargarImagenPublicacion } from '../../Store/ACCIONES';
 
 class SeleccionarGaleria extends Component {
+// static navigationOptions = {
+//     tabBarVisible: false,
+// }; not working! it's on StackAdd.js
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.imagen}>
-            <SeleccionarImagen imagen={this.props.imagen.imagen} cargar={this.props.cargarImagen} />
+            <SeleccionarImagen imagen={this.props.imagen.imagen} cargar={this.props.cargarImagen} radius={true} />
         </View>
         <View style={styles.texto}>
             <Text>SeleccionarGaleria</Text>
