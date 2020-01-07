@@ -27,14 +27,6 @@ class SeleccionarGaleria extends Component {
                 }}
             />
         </View>
-        <View style={styles.boton}>
-            <Button
-                title="Publicar"
-                onPress={() => {
-                    console.log("elemento publicado👌");
-                }}
-            />
-        </View>
       </View>
     );
   }
@@ -43,7 +35,6 @@ class SeleccionarGaleria extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
         backgroundColor: '#f9f9f9',
     },
     imagen: {
@@ -52,9 +43,6 @@ const styles = StyleSheet.create({
     texto: {
         flex: 2,
     },
-    boton: {
-        flex: 1,
-    }
 });
 
 const mapStateToProps = state => {

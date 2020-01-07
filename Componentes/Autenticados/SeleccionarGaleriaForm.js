@@ -14,8 +14,9 @@ const fieldNombre = (props) => {
                 keyboardType="default"
                 autoCapitalize='none'
                 onBlur={props.input.onBlur}
+                multiline
             />
-            <View style={styles.linea} />
+            <View />
             { props.meta.touched && props.meta.error && <Text style={styles.errors}>{props.meta.error}</Text>}
         </View>
     );
@@ -36,7 +37,7 @@ const validate = (values, props) => {
     if (!props.imagen) {
         errors.imagen = 'imagen es requerida';
     }
-    if (values.texto && !values.texto.length > 140) {
+    if (values.texto && values.texto.length > 140) {
         errors.texto = 'debe ser menor de 140 caracteres';
     }
     return errors;
@@ -69,11 +70,7 @@ const styles = StyleSheet.create({
         flex: 3,
     },
     textInput: {
-        marginBottom: 16,
-    },
-    linea: {
-        backgroundColor: '#DCDCDC',
-        height: 2,
+        marginHorizontal: 16,
     },
     errors: {
         color: '#FF0000',
