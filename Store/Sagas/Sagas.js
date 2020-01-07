@@ -81,10 +81,23 @@ function* sagaLogin(values) {
     }
 }
 
+function* sagaSubirPublicacion(values) {
+    try {
+        console.log("👽!", values);
+        const imagen = yield select(state => state.reducerImagenPublicacion);
+        console.log(imagen);
+        const resultadoImagen = yield call(registroFotoCloudinary, imagen);
+        console.log(resultadoImagen);
+    } catch (error) {
+        console.log("🙃", error);
+    }
+}
+
 export default function* funcionPrimaria() {
     // takeEvery es un Listener
     yield takeEvery(CONSTANTES.REGISTRO, sagaRegistro);
     // yield ES6 permite pausar ejecucion de la funcion en yield y regresar un valor.
     yield takeEvery(CONSTANTES.LOGIN, sagaLogin);
+    yield takeEvery(CONSTANTES.SUBIR_PUBLICACION, sagaSubirPublicacion);
     console.log('Desde nuestra funcion generadora');
 }
