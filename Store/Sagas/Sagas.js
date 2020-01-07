@@ -81,11 +81,11 @@ function* sagaLogin(values) {
     }
 }
 
-const escribirFirebase = ({width, height, secure_url}) => baseDeDatos.ref('publicaciones/').push({
-    width, height, secure_url
+const escribirFirebase = ({width, height, secure_url}, texto = '') => baseDeDatos.ref('publicaciones/').push({
+    width, height, secure_url, texto,
 }).then(response => response);
 
-function* sagaSubirPublicacion(values) {
+function* sagaSubirPublicacion({ values }) {
     try {
         console.log("👽!", values);
         const imagen = yield select(state => state.reducerImagenPublicacion);
@@ -94,7 +94,7 @@ function* sagaSubirPublicacion(values) {
         console.log(resultadoImagen);
         const { width, height, secure_url } = resultadoImagen;
         const parametrosImagen = { width, height, secure_url };
-        const escribirEnFirebase = yield call(escribirFirebase, parametrosImagen);
+        const escribirEnFirebase = yield call(escribirFirebase, parametrosImagen, values.texto);
         console.log(escribirFirebase);
     } catch (error) {
         console.log("🙃", error);
