@@ -118,11 +118,26 @@ function* sagaSubirPublicacion({ values }) {
     }
 }
 
+const descargarPublicaciones = () => baseDeDatos
+    .ref('publicaciones/')
+    .once('value')
+    .then(response => response.val());
+
+function* sagaDescargarPublicaciones() {
+    try {
+        const publicaciones = yield call(descargarPublicaciones);
+        console.log("👽", publicaciones);
+    } catch (error) {
+        console.log("🙃", error);
+    }
+}
+
 export default function* funcionPrimaria() {
     // takeEvery es un Listener
     yield takeEvery(CONSTANTES.REGISTRO, sagaRegistro);
     // yield ES6 permite pausar ejecucion de la funcion en yield y regresar un valor.
     yield takeEvery(CONSTANTES.LOGIN, sagaLogin);
     yield takeEvery(CONSTANTES.SUBIR_PUBLICACION, sagaSubirPublicacion);
+    yield takeEvery(CONSTANTES.DESCARGAR_PUBLICACIONES, sagaDescargarPublicaciones);
     console.log('Desde nuestra funcion generadora');
 }
