@@ -3,13 +3,18 @@ import { View, Text, Button, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { blur } from 'redux-form';
 import SeleccionarImagen from '../SeleccionarImagen';
-import { actionCargarImagenPublicacion, actionSubirPublicacion } from '../../Store/ACCIONES';
+import { actionCargarImagenPublicacion, actionSubirPublicacion, actionLimpiarImagenPublicacion } from '../../Store/ACCIONES';
 import SeleccionarGaleriaForm from './SeleccionarGaleriaForm';
 
 class SeleccionarGaleria extends Component {
 // static navigationOptions = {
 //     tabBarVisible: false,
 // }; not working! it's on StackAdd.js
+
+    componentWillUnmount() {
+        this.props.limpiarImagen();
+    }
+
   render() {
     return (
       <View style={styles.container}>
@@ -59,6 +64,9 @@ const mapDispatchToProps = dispatch => ({
     },
     subirPublicacion: (values) => {
         dispatch(actionSubirPublicacion(values));
+    },
+    limpiarImagen: () => {
+        dispatch(actionLimpiarImagenPublicacion());
     },
 });
 
