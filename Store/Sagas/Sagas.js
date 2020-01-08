@@ -81,8 +81,12 @@ function* sagaLogin(values) {
     }
 }
 
-const escribirFirebase = ({width, height, secure_url}, texto = '') => baseDeDatos.ref('publicaciones/').push({
-    width, height, secure_url, texto,
+const escribirFirebase = ({ width, height, secure_url, uid }, texto = '') => baseDeDatos.ref('publicaciones/').push({
+    width,
+    height,
+    secure_url,
+    uid,
+    texto,
 }).then(response => response);
 
 function* sagaSubirPublicacion({ values }) {
@@ -93,7 +97,10 @@ function* sagaSubirPublicacion({ values }) {
         const resultadoImagen = yield call(registroFotoCloudinary, imagen);
         console.log(resultadoImagen);
         const { width, height, secure_url } = resultadoImagen;
-        const parametrosImagen = { width, height, secure_url };
+        const usuario = yield select(state => state.reducerSesion);
+        const { uid } = usuario;
+        console.log("usuario 👉", uid);
+        const parametrosImagen = { width, height, secure_url, uid };
         const escribirEnFirebase = yield call(escribirFirebase, parametrosImagen, values.texto);
         console.log(escribirFirebase);
     } catch (error) {
