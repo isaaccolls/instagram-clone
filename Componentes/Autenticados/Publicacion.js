@@ -26,7 +26,6 @@ class Publicacion extends Component {
                     <View style={styles.texto}>
                         <Text>{item.texto}</Text>
                     </View>
-                    <Text>Comentarios!!</Text>
                 </View>
                 {/*
                 <Text>Publicacion</Text>

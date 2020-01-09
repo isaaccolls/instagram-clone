@@ -20,7 +20,7 @@ class Home extends Component {
                 <FlatList
                     data = {this.props.publicaciones}
                     renderItem = {({ item, index }) => <Publicacion item={item} autor={autores[index]} />}
-                    ItemSeparatorComponent={() => <View style={styles.separador}></View>}
+                    // ItemSeparatorComponent={() => <View style={styles.separador}></View>}
                 />
                 {/*
                 <Text>Home</Text>
