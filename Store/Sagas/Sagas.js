@@ -3,7 +3,7 @@
 import { takeEvery, call, select, put, all } from 'redux-saga/effects';
 import { autenticacion, baseDeDatos } from '../Servicios/Firebase';
 import CONSTANTES from '../CONSTANTES';
-import { actionAgregarPublicacionesStore, actionAgregarAutoresStore } from '../../Store/ACCIONES';
+import { actionAgregarPublicacionesStore, actionAgregarAutoresStore, actionExitoSubirPublicacion, actionErrorSubirPublicacion } from '../../Store/ACCIONES';
 
 const registroEnFirebase = values =>
     autenticacion
@@ -114,8 +114,10 @@ function* sagaSubirPublicacion({ values }) {
         const parametrosAutorPublicaciones = { uid, key };
         const resultadoEscribirAutorPublicaciones = yield call(escribirAutorPublicaciones, parametrosAutorPublicaciones);
         console.log("resultadoEscribirAutorPublicaciones: ", resultadoEscribirAutorPublicaciones);
+        yield put(actionExitoSubirPublicacion());
     } catch (error) {
         console.log("🙃", error);
+        yield put(actionErrorSubirPublicacion());
     }
 }
 

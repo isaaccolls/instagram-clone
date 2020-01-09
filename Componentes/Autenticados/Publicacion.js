@@ -26,7 +26,7 @@ class Publicacion extends Component {
                     <View style={styles.texto}>
                         <Text>{item.texto}</Text>
                     </View>
-                    <Text>Comentarios</Text>
+                    <Text>Comentarios!!</Text>
                 </View>
                 {/*
                 <Text>Publicacion</Text>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingHorizontal: 16,
-        marginBottom: 16,
+        marginVertical: 16,
     },
     footer: {
         marginHorizontal: 16,
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     },
     texto: {
         marginBottom: 16,
+        color: '#C0C0C0',
     }
 });
 
