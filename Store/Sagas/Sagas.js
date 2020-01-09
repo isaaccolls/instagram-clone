@@ -1,8 +1,9 @@
 // takeEvery: escucha cada dispatch del store y ejecuta una funcion si encuentra el dispatch
 // call: ejecuta una funcion
-import { takeEvery, call, select } from 'redux-saga/effects';
+import { takeEvery, call, select, put } from 'redux-saga/effects';
 import { autenticacion, baseDeDatos } from '../Servicios/Firebase';
 import CONSTANTES from '../CONSTANTES';
+import { actionAgregarPublicacionesStore } from '../../Store/ACCIONES';
 
 const registroEnFirebase = values =>
     autenticacion
@@ -121,12 +122,24 @@ function* sagaSubirPublicacion({ values }) {
 const descargarPublicaciones = () => baseDeDatos
     .ref('publicaciones/')
     .once('value')
-    .then(response => response.val());
+    .then(snapshot => {
+        let publicaciones = [];
+        snapshot.forEach((childSnapshot) => {
+            const { key } = childSnapshot;
+            let publicacion = childSnapshot.val();
+            publicacion.key = key;
+            // console.log(JSON.stringify(publicacion));
+            publicaciones.push(publicacion);
+            // return null;
+        });
+        return publicaciones;
+    });
 
 function* sagaDescargarPublicaciones() {
     try {
         const publicaciones = yield call(descargarPublicaciones);
-        console.log("👽", publicaciones);
+        // console.log("👽 publicaciones: ", publicaciones);
+        yield put(actionAgregarPublicacionesStore(publicaciones));
     } catch (error) {
         console.log("🙃", error);
     }

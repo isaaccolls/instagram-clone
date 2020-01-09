@@ -13,6 +13,7 @@ class Home extends Component {
     render() {
         // console.log(this.props.navigation);
         const { navigation } = this.props;
+        console.log("😃 publicaciones: ", this.props.publicaciones);
         return (
             <View style={styles.container}>
                 <Text>Home</Text>
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-    prop: state.prop,
+    publicaciones: state.reducerPublicacionesDescargadas,
 });
 
 const mapDispatchToProps = (dispatch) => ({
