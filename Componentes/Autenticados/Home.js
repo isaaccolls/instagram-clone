@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button, FlatList, Image, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { actionDescargarPublicaciones } from '../../Store/ACCIONES';
+import Publicacion from './Publicacion';
 
 class Home extends Component {
 
@@ -18,14 +19,7 @@ class Home extends Component {
             <View style={styles.container}>
                 <FlatList
                     data = {this.props.publicaciones}
-                    renderItem = {({ item }) => {
-                        // <Text>{item.key}</Text>
-                        const { width } = Dimensions.get('window');
-                        // console.log("device width: ", width);
-                        const factor = item.width / width;
-                        const height = item.height / factor;
-                        return <Image source={{uri: item.secure_url}} style={{ width, height }} />
-                    }}
+                    renderItem = {({ item }) => <Publicacion item={ item } />}
                 />
                 {/*
                 <Text>Home</Text>

@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, Dimensions, Image } from 'react-native';
 
 class Publicacion extends Component {
     render() {
         // console.log(this.props.navigation);
-        const { navigation } = this.props;
+        const { navigation, item } = this.props;
+        const { width } = Dimensions.get('window');
+        // console.log("device width: ", width);
+        const factor = item.width / width;
+        const height = item.height / factor;
         return (
-            <View style={styles.container}>
+            <View>
+                <Image source={{uri: item.secure_url}} style={{ width, height }} />
+                {/*
                 <Text>Publicacion</Text>
                 <Button
                     title='Comentarios'
@@ -14,6 +20,7 @@ class Publicacion extends Component {
                         navigation.navigate('Comentarios')
                     }}
                 />
+                */}
             </View>
         );
     }
