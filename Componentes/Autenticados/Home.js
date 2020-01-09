@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, FlatList, Image, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { actionDescargarPublicaciones } from '../../Store/ACCIONES';
 
@@ -16,6 +16,18 @@ class Home extends Component {
         console.log("😃 publicaciones: ", this.props.publicaciones);
         return (
             <View style={styles.container}>
+                <FlatList
+                    data = {this.props.publicaciones}
+                    renderItem = {({ item }) => {
+                        // <Text>{item.key}</Text>
+                        const { width } = Dimensions.get('window');
+                        // console.log("device width: ", width);
+                        const factor = item.width / width;
+                        const height = item.height / factor;
+                        return <Image source={{uri: item.secure_url}} style={{ width, height }} />
+                    }}
+                />
+                {/*
                 <Text>Home</Text>
                 <Button
                     title='autor'
@@ -29,6 +41,7 @@ class Home extends Component {
                         navigation.navigate('Comentarios');
                     }}
                 />
+                */}
             </View>
         );
     }
