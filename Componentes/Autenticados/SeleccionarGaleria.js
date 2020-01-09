@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { blur } from 'redux-form';
 import SeleccionarImagen from '../SeleccionarImagen';
-import { actionCargarImagenPublicacion, actionSubirPublicacion, actionLimpiarImagenPublicacion } from '../../Store/ACCIONES';
+import { actionCargarImagenPublicacion, actionSubirPublicacion, actionLimpiarImagenPublicacion, actionLimpiarSubirPublicacion } from '../../Store/ACCIONES';
 import SeleccionarGaleriaForm from './SeleccionarGaleriaForm';
 
 class SeleccionarGaleria extends Component {
@@ -20,7 +20,10 @@ class SeleccionarGaleria extends Component {
             switch (nextProps.estadoSubirPublicacion) {
                 case 'EXITO':
                     console.log("exito 😁");
-                    this.props.navigation.goBack();
+                    Alert.alert('Exito', 'La publicacion fue realizada correctamente', [{text: 'Ok', onPress: () => {
+                        this.props.limpiarEstadoPublicacion();
+                        this.props.navigation.goBack();
+                    }}]);
                     break;
                 case 'ERROR':
                     console.log("error 🙃");
@@ -84,6 +87,9 @@ const mapDispatchToProps = dispatch => ({
     },
     limpiarImagen: () => {
         dispatch(actionLimpiarImagenPublicacion());
+    },
+    limpiarEstadoPublicacion: () => {
+        dispatch(actionLimpiarSubirPublicacion());
     },
 });
 

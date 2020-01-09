@@ -63,3 +63,7 @@ export const actionExitoSubirPublicacion = () => ({
 export const actionErrorSubirPublicacion = () => ({
     type: CONSTANTES.ERROR_SUBIR_PUBLICACION,
 });
+
+export const actionLimpiarSubirPublicacion = () => ({
+    type: CONSTANTES.LIMPIAR_SUBIR_PUBLICACION,
+});

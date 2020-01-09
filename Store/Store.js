@@ -69,7 +69,9 @@ const reducerExitoSubirPublicacion = (state = {estado: null}, action) => {
         case CONSTANTES.EXITO_SUBIR_PUBLICACION:
             return { estado: 'EXITO'};
         case CONSTANTES.ERROR_SUBIR_PUBLICACION:
-            return { estado: 'ERRIR' };
+            return { estado: 'ERROR' };
+        case CONSTANTES.LIMPIAR_SUBIR_PUBLICACION:
+            return { estado: null };
         default:
             return state;
     }
