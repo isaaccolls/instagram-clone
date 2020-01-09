@@ -20,13 +20,25 @@ class SeleccionarGaleria extends Component {
             switch (nextProps.estadoSubirPublicacion) {
                 case 'EXITO':
                     console.log("exito 😁");
-                    Alert.alert('Exito', 'La publicacion fue realizada correctamente', [{text: 'Ok', onPress: () => {
-                        this.props.limpiarEstadoPublicacion();
-                        this.props.navigation.goBack();
-                    }}]);
+                    Alert.alert('Exito', 'La publicacion fue realizada correctamente', [
+                        {
+                            text: 'Ok',
+                            onPress: () => {
+                                this.props.limpiarEstadoPublicacion();
+                                ps.navigation.goBack();
+                            },
+                        }]);
                     break;
                 case 'ERROR':
                     console.log("error 🙃");
+                    Alert.alert('Error', 'La publicacion no se realizo, intente nuevamente...', [
+                        {
+                            text: 'Nothing to do',
+                            onPress: () => {
+                                this.props.limpiarEstadoPublicacion();
+                                this.props.navigation.goBack();
+                            },
+                        }]);
                     break;
                 default:
                     break;

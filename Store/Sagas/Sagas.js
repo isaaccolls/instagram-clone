@@ -98,6 +98,7 @@ const escribirAutorPublicaciones = ({ uid, key }) => baseDeDatos
 function* sagaSubirPublicacion({ values }) {
     try {
         console.log("👽!", values);
+        // throw new Error('La publicacion no se realizo 😜');
         const imagen = yield select(state => state.reducerImagenPublicacion);
         // console.log(imagen);
         const resultadoImagen = yield call(registroFotoCloudinary, imagen);
