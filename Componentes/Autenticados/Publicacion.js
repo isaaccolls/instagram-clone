@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button, Dimensions, Image } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 class Publicacion extends Component {
     render() {
@@ -17,8 +18,14 @@ class Publicacion extends Component {
                     <Text>{autor.nombre}</Text>
                 </View>
                 <Image source={{uri: item.secure_url}} style={{ width, height }} />
-                <View>
-                    <Text>Likes</Text>
+                <View style={styles.footer}>
+                    <View style={styles.icons}>
+                        <Ionicons name='md-heart-empty' color='#000000' size={30} style={styles.icon} />
+                        <Ionicons name='md-chatboxes' color='#000000' size={30} style={styles.icon} />
+                    </View>
+                    <View style={styles.texto}>
+                        <Text>{item.texto}</Text>
+                    </View>
                     <Text>Comentarios</Text>
                 </View>
                 {/*
@@ -48,6 +55,19 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         marginBottom: 16,
     },
+    footer: {
+        marginHorizontal: 16,
+    },
+    icons: {
+        flexDirection: 'row',
+    },
+    icon: {
+        marginLeft: 16,
+        marginVertical: 16,
+    },
+    texto: {
+        marginBottom: 16,
+    }
 });
 
 export default Publicacion;
